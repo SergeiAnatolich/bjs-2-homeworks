@@ -16,9 +16,9 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
-  if (percent >= 0 & percent <= 100) {
+  if (percent >= 0 && percent <= 100) {
     if (amount > 0) {
-      if (contribution >= 0 & contribution <= amount) {
+      if (contribution >= 0 && contribution <= amount) {
         let quantityMonths = monthDiff(date, new Date);
         let bodyCredit = amount - contribution;
         let interestRate = 1/12*percent/100;
