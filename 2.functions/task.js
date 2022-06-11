@@ -27,24 +27,30 @@ function worker(arr) {
 function makeWork(arrOfArr, func) {
   let max = func(arrOfArr[0]);
   for (let index = 0; index < arrOfArr.length; index++) {
-    if (func(arrOfArr[index]) > max) {
-      max = func(arrOfArr[index]);
+    let tmp = func(arrOfArr[index]);
+    if (tmp > max) {
+      max = tmp;
     };
   }
   return max;
 }
 
 // Задание 3
+// function worker2(arr) {
+//   let min = arr[0];
+//   let max = arr[0];
+//   arr.forEach(element => {
+//     if (element < min) {
+//       min = element;
+//     } else if (element > max) {
+//       max = element;
+//     };
+//   });
+//   let difference = Math.abs(max - min);
+//   return difference;
+// }
+
 function worker2(arr) {
-  let min = arr[0];
-  let max = arr[0];
-  arr.forEach(element => {
-    if (element < min) {
-      min = element;
-    } else if (element > max) {
-      max = element;
-    };
-  });
-  let difference = Math.abs(max - min);
-  return difference;
+  let arrParams = getArrayParams(arr);
+  return arrParams.max - arrParams.min;
 }
