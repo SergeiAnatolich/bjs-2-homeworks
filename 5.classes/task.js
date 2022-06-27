@@ -118,22 +118,43 @@ class Student {
     }
 
     getAverageBySubject (subject) {
-        let x;
-        return this[subject].map(item => x += item, x = 0).reverse()[0] / this[subject].length;
+        if (!this[subject]) {
+            return "Несуществующий предмет";
+        } else {
+            let x;
+            return this[subject].map(item => x += item, x = 0).reverse()[0] / this[subject].length;
+        }
     }
 
     getAverage () {
+        let subject = [];
+        for (let property in this) {
+            if (property != "name" && property != "gender" && property != "age" && property != "excluded") {
+                subject.push(property);
+            }
+        }
+        if (subject.length === 0) {
+            return "Студент не посещает не одного предмета";
+        } else {
+            let average = [];
+            for (let i = 0; i < subject.length; i++) {
+                average.push(this.getAverageBySubject(subject[i]));
+            }
+            let x;
+            return average.map(item => x += item, x = 0).reverse()[0] / average.length;
+        }
+    }
+
+    exclude (reason) {
         let subject = [];
         for (let property in this) {
             if (property != "name" && property != "gender" && property != "age") {
                 subject.push(property);
             }
         }
-        let average = [];
-        for (let i = 0; i < subject.length; i++) {
-            average.push(this.getAverageBySubject(subject[i]));
-        }
-        let x;
-        return average.map(item => x += item, x = 0).reverse()[0] / average.length;
+        subject.forEach(element => {
+            delete this[element];
+        });
+        this.excluded = reason;
     }
 }
