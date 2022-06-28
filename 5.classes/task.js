@@ -121,8 +121,7 @@ class Student {
         if (!this[subject]) {
             return "Несуществующий предмет";
         } else {
-            let x;
-            return this[subject].map(item => x += item, x = 0).reverse()[0] / this[subject].length;
+            return this[subject].reduce((summ, item) => summ + item, 0) / this[subject].length
         }
     }
 
@@ -140,8 +139,7 @@ class Student {
             for (let i = 0; i < subject.length; i++) {
                 average.push(this.getAverageBySubject(subject[i]));
             }
-            let x;
-            return average.map(item => x += item, x = 0).reverse()[0] / average.length;
+            return average.reduce((summ, item) => summ + item, 0) / average.length;
         }
     }
 
